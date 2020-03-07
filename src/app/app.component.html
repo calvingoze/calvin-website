@@ -1,5 +1,5 @@
   <mat-sidenav-container>
-    <mat-sidenav #sidenav role="navigation">
+    <mat-sidenav #sidenav fixedInViewport="true" [opened]="false" role="navigation">
       <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -7,5 +7,11 @@
       <main>
         <router-outlet></router-outlet>
       </main>
+      <footer>
+        <div class="footer-content">
+          ©{{GetYear()}} Calvin Gozé <a href="https://github.com/calvingoze" target="_blank"><img  class="images" src="../assets/imgs/GitHub-Mark-32px.png" alt="Github"/></a>&nbsp;
+            <a href="https://www.linkedin.com/in/calvin-goze-759a5a180" target="_blank"><img  class="images" src="../assets/imgs/LI-In-Bug.png" alt="Linkedin"/></a>
+        </div>
+      </footer>
     </mat-sidenav-content>
   </mat-sidenav-container>

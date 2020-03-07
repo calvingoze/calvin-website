@@ -7,5 +7,30 @@ mat-sidenav {
 }
  
 main {
-    padding: 10px;
+    margin-top: 64px;
+    min-height: calc(100vh - 129px);
+}
+
+@media(max-width: 599px){
+    main{
+        margin-top: 56px!important;
+        min-height: calc(100vh - 121px);
+    }
+}
+
+footer{
+    background-color: #ddd;
+    border-top: 1px solid #bbb;
+    text-align: center;
+    position: relative;
+}
+
+.footer-content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin: auto;
+}
+
+footer img{
+    vertical-align: bottom;
 }
