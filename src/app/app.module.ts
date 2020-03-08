@@ -13,6 +13,7 @@ import { ContactComponent } from './main/contact/contact.component';
 import { HeaderComponent } from './common/header/header.component';
 import { SidenavListComponent } from './common/sidenav-list/sidenav-list.component';
 import { HomeComponent } from './main/home/home.component';
+import { ContentBlockComponent } from './common/content-block/content-block.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HomeComponent } from './main/home/home.component';
     ContactComponent,
     HeaderComponent,
     SidenavListComponent,
-    HomeComponent
+    HomeComponent,
+    ContentBlockComponent
   ],
   imports: [
     BrowserModule,
