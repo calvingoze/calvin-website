@@ -39,13 +39,23 @@ export class HomeComponent implements OnInit {
 
   content1: ContentBlock;
 
+  CalculateContentOffset(){
+    document.getElementById("top-content").style.position = "absolute"
+    document.getElementById("top-content").style.top = "calc(" + document.getElementById("first-content").offsetTop+"px - 56px)";
+  }
+
   ngOnInit(): void {
     this.content1 = {
-      imgUrl: "../../../assets/imgs/home-hero.jpg",
+      imgUrl: "/assets/imgs/home-hero.jpg",
       header: "Title Test Boy",
       body: "Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum ",
       imgPosition: "left"
     }
+    this.CalculateContentOffset();
+    window.addEventListener("resize", this.CalculateContentOffset);
+  }
+  ScrollToContent(){
+      document.getElementById("top-content").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
   }
 
 }
