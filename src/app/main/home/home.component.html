@@ -4,10 +4,9 @@
 <div [@simpleFadeAnimation] [@SlideinAnimation] id="hero-text">
     <h1>Calvin Gozé</h1>
     <p>Competent. Committed.</p>
-    <a mat-fab color="primary" (click)="ScrollToContent()"><mat-icon>keyboard_arrow_down</mat-icon></a>
+    <a id="down-button" mat-fab color="primary" (click)="ScrollToContent()"><mat-icon>keyboard_arrow_down</mat-icon></a>
 </div>
-<div id="top-content"></div>
-<div [@simpleFadeAnimation] [@SlideinAnimation] id="first-content">
+<div [@simpleFadeAnimation] [@SlideinAnimation]>
     <app-content-block [content]="content1"></app-content-block>
 </div>
 
