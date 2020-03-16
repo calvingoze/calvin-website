@@ -14,6 +14,7 @@ import { HeaderComponent } from './common/header/header.component';
 import { SidenavListComponent } from './common/sidenav-list/sidenav-list.component';
 import { HomeComponent } from './main/home/home.component';
 import { ContentBlockComponent } from './common/content-block/content-block.component';
+import { AnimateComponent } from './animations/animate.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ContentBlockComponent } from './common/content-block/content-block.comp
     HeaderComponent,
     SidenavListComponent,
     HomeComponent,
-    ContentBlockComponent
+    ContentBlockComponent,
+    AnimateComponent
   ],
   imports: [
     BrowserModule,

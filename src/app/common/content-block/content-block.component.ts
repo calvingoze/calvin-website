@@ -17,6 +17,8 @@ export class ContentBlockComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    //this.content.body = new DOMParser().parseFromString(this.content.body, 'text/html').body.innerHTML
+
     if (this.content.imgPosition === "left") {
       this.posImg = 1;
       this.posText = 2;
@@ -28,7 +30,7 @@ export class ContentBlockComponent implements OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  getScreenSize(event?) {
+  getScreenSize() {
     if (window.innerWidth < 960) {
       this.posImg = 1;
       this.posText = 2;

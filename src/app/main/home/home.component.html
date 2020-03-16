@@ -1,12 +1,105 @@
-<div [@simpleFadeAnimation] id="hero-img">
-
-</div>
-<div [@simpleFadeAnimation] [@SlideinAnimation] id="hero-text">
+<div [@SimpleFadeAnimation] id="hero-img"></div>
+<div [@SimpleFadeAnimation] [@SlideinAnimation] id="hero-text">
     <h1>Calvin Gozé</h1>
     <p>Competent. Committed.</p>
-    <a id="down-button" mat-fab color="primary" (click)="ScrollToContent()"><mat-icon>keyboard_arrow_down</mat-icon></a>
+    <a id="down-button" mat-fab color="primary" (click)="ScrollToContent()">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+    </a>
 </div>
-<div [@simpleFadeAnimation] [@SlideinAnimation]>
+<div wmAnimate="landing" speed="fast" aos>
     <app-content-block [content]="content1"></app-content-block>
 </div>
 
+<div fxLayout="row wrap" fxLayoutAlign="center">
+    <div fxFlex="320px" fxLayout="column" fxLayoutAlign="center" [ngClass]="'padding-block'" wmAnimate="fadeInRight"
+        speed="fast" aos>
+        <mat-card>
+            <mat-card-header>
+                <mat-icon>code</mat-icon>
+                <mat-card-title>Skills</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                    bred for hunting.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" routerLink="/skills">View Skills</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div fxFlex="320px" fxLayout="column" fxLayoutAlign="center" [ngClass]="'padding-block'" wmAnimate="fadeInUp"
+        speed="fast" aos>
+        <mat-card>
+            <mat-card-header>
+                <mat-icon>art_track</mat-icon>
+                <mat-card-title>Projects</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                    bred for hunting.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" routerLink="/projects">View Projects</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div fxFlex="320px" fxLayout="column" fxLayoutAlign="center" [ngClass]="'padding-block'" wmAnimate="fadeInLeft"
+        speed="fast" aos>
+        <mat-card>
+            <mat-card-header>
+                <mat-icon>library_books</mat-icon>
+                <mat-card-title>Blog</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                    bred for hunting.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" routerLink="/blog">View Blog</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+
+
+<div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center">
+    <div class="purple-block" fxFlex fxFlex.gt-md="500px" wmAnimate="landing" speed="faster" aos>
+        <div class="inner-padding" fxLayout="row">
+            <div fxFlex>
+                <h2>
+                    <mat-icon>school</mat-icon> Education
+                </h2>
+                <h3>Colleg of the Ozarks</h3>
+                <small>2017 - 2021, 3.85 GPA</small>
+                <p><strong>Major:</strong> Engineering<br>
+                    <strong>Minor:</strong> Mathematics</p>
+            </div>
+            <div fxFlex fxLayoutAlign="center center">
+                <a target="_blank" href="../../../assets/pdfs/jjd1k055fajasa40xb5xswhf9_31_16_PM_UnofficialTranscript.pdf" mat-raised-button>View Unofficial Transcript</a>
+            </div>
+        </div>
+    </div>
+    <div class="purple-block" fxFlex fxFlex.gt-md="500px" wmAnimate="landing" speed="faster" aos>
+        <div class="inner-padding" fxLayout="row wrap">
+            <div fxFlex>
+                <h2>
+                    <mat-icon>work</mat-icon> Current Position
+                </h2>
+                <h3>Colleg of the Ozarks<br>Web Development Office</h3>
+                <small>2019 - Present</small>
+            </div>
+            <div fxFlex fxLayoutAlign="center center">
+                <a target="_blank" href="../../../assets/pdfs/CalvinResume.pdf" mat-raised-button>View Résumé</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -23,6 +23,18 @@
     background-size: cover;
 }
 
+  mat-card-actions{
+      text-align: center;
+  }
+
+  .inner-padding{
+      padding: 1rem;
+  }
+
+  .purple-block mat-icon{
+    vertical-align: middle;
+  }
+
 @media(max-width: 599px){
     #hero-img{
         height: calc(100vh - 248px);

@@ -1,6 +1,7 @@
 export class ContentBlock {
     imgUrl: string;
+    imgAlt: string;
     header: string;
-    body: string;
+    body: any;
     imgPosition: string;
 }

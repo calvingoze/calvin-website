@@ -5,3 +5,28 @@ body{
 }
 html, body { height: 100%; margin: 0; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.padding-block {
+    padding: 2rem;
+}
+.max-width{
+    width: 100%;
+    max-width: 1200px;
+}
+
+.purple-block{
+    box-shadow: 0 2px 5px 0 rgba(52,47,51,.63);
+    background-color: #3f51b5;
+    margin: 2rem;
+    border-radius: 10px;
+    color: white;
+}
+
+.purple-block h3{
+margin-bottom: 0;
+}
+
+.purple-block .main-content{
+margin-top: 1rem;
+font-size: large;
+}

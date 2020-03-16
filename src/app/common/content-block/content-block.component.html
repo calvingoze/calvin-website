@@ -1,16 +1,16 @@
 <div fxLayout fxLayoutAlign="center">
-    <div class="container left-img"
+    <div class="purple-block max-width left-img"
      fxLayout
      fxLayout.sm="column"
      fxLayout.xs="column"
      fxLayoutAlign="center"
      fxLayoutGap="10px">
     <div class="content-img" fxFlex.xs="310px" fxFlex="460px" fxFlexOrder="{{posImg}}">
-      <img src="{{content.imgUrl}}">
+      <img src="{{content.imgUrl}}" alt="{{content.imgAlt}}">
     </div>
     <div class="content-text" fxFlexOrder="{{posText}}">
       <h2>{{content.header}}</h2>
-      <p>{{content.body}}</p>
+      {{content.body}}
     </div>
     </div>
 </div>
