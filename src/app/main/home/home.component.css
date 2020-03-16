@@ -36,6 +36,9 @@
   }
 
 @media(max-width: 599px){
+    .purple-card-text{
+        text-align: center;
+      }
     #hero-img{
         height: calc(100vh - 248px);
     }
