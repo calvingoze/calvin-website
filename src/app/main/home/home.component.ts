@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ContentBlock } from 'src/app/models/ContentBlock';
 import { SlideinAnimation, SimpleFadeAnimation } from '../../animations/basicAnimations/animations';
+import { Skill } from 'src/app/models/Skill';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  content1: ContentBlock;
+  Skills: Array<Skill>
+  headContent: ContentBlock;
 
   ngOnInit(): void {
     // Checks to see if mobile device
@@ -25,13 +27,30 @@ export class HomeComponent implements OnInit {
         document.getElementById("hero-img").style.height = window.innerHeight - 248 + "px";
     }
 
-    this.content1 = {
+    this.headContent = {
       imgUrl: "/assets/imgs/home-hero.jpg",
       header: "Software Developer. Mechanical Engineer.",
-      body: '<p>Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum </p>',
-      imgPosition: "left",
+      body: 'Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum Ipsum Lorem Sum',
       imgAlt: "Alt Text Test"
     }
+    this.Skills = [
+      {
+        name: "Angular",
+        logoUrl: "/assets/skillLogos/angular.png"
+      },
+      {
+        name: "DNN",
+        logoUrl: "/assets/skillLogos/dnn.png"
+      },
+      {
+        name: "MATLAB®",
+        logoUrl: "/assets/skillLogos/matlab.png"
+      },
+      {
+        name: "Office 365",
+        logoUrl: "/assets/skillLogos/office365.png"
+      }
+    ]
   }
   ScrollToContent(){
       document.getElementById("down-button").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});

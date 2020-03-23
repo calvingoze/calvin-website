@@ -6,11 +6,35 @@
         <mat-icon>keyboard_arrow_down</mat-icon>
     </a>
 </div>
-<div wmAnimate="landing" speed="fast" aos>
-    <app-content-block [content]="content1"></app-content-block>
-</div>
 
-<div fxLayout="row wrap" fxLayoutAlign="center">
+    <div fxLayout fxLayoutAlign="center" wmAnimate="landing" speed="faster" aos>
+        <div class="purple-block max-width left-img"
+         fxLayout
+         fxLayout.sm="column"
+         fxLayout.xs="column"
+         fxLayoutAlign="center"
+         fxLayoutGap="10px">
+        <div class="content-img" fxFlex.xs="310px" fxFlex="460px">
+          <img src="{{headContent.imgUrl}}" alt="{{headContent.imgAlt}}">
+        </div>
+        <div fxLayout="column" class="content-text">
+        <div fxFlex>
+          <h2>{{headContent.header}}</h2>
+          {{headContent.body}}
+        </div>
+            <div fxFlex fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="0" fxLayoutGap.gt-xs="50px" fxLayoutAlign="center center" style="padding-top: 1rem;">
+                <div fxFlex="50px" fxFlex.gt-xs="200px">
+                    <a target="_blank" href="../../../assets/pdfs/jjd1k055fajasa40xb5xswhf9_31_16_PM_UnofficialTranscript.pdf" mat-raised-button>View Unofficial Transcript</a>
+                </div>
+                <div fxFlex="50px" fxFlex.gt-xs="200px">
+                    <a target="_blank" href="../../../assets/pdfs/CalvinResume.pdf" mat-raised-button>View Résumé</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+<!-- <div fxLayout="row wrap" fxLayoutAlign="center">
     <div fxFlex="320px" fxLayout="column" fxLayoutAlign="center" [ngClass]="'padding-block'" wmAnimate="fadeInRight"
         speed="fast" aos>
         <mat-card>
@@ -68,10 +92,9 @@
             </mat-card-actions>
         </mat-card>
     </div>
-</div>
+</div> -->
 
-
-<div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center">
+<!--<div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center">
     <div class="purple-block" fxFlex fxFlex.gt-md="500px" wmAnimate="landing" speed="faster" aos>
         <div class="inner-padding" fxLayout="row" fxLayout.xs="column">
             <div class="purple-card-text" fxFlex>
@@ -102,4 +125,24 @@
             </div>
         </div>
     </div>
+</div>-->
+
+<div style="padding-top: 2rem; text-align: center;">
+    <h2 ngClass="hero-text" wmAnimate="zoomIn" speed="fast" aos>Skills</h2>
+</div>
+
+<div fxLayout="row wrap" fxLayoutAlign="center">
+<div class="padding-block" *ngFor="let skill of Skills" wmAnimate="landing" speed="fast" aos>
+    <mat-card ngClass="skill-card">
+        <mat-card-header>
+            <mat-card-title><h2>{{skill.name}}</h2></mat-card-title>
+        </mat-card-header>
+        <div class="card-img">
+        <img  mat-card-md-image src="{{skill.logoUrl}}" alt="{{skill.name}} logo">
+        </div>
+        <mat-card-content>
+            <p>{{skill.description}}</p>
+        </mat-card-content>
+    </mat-card>
+</div>
 </div>

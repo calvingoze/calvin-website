@@ -10,13 +10,20 @@
     letter-spacing: .25rem;
     text-transform: uppercase;
 }
+.hero-text {
+    margin-bottom: .5!important;
+    padding-top: 1.5rem;
+    font-size: 3rem;
+    letter-spacing: .25rem;
+    text-transform: uppercase;
+}
 #hero-text mat-icon{
     transform: scale(2);
 }
 #hero-img{
     width: 100%;
     height: calc(100vh - 255px);
-    background-image: url("../../../assets/imgs/home-hero.jpg");
+    background-image: url("/assets/imgs/home-hero.jpg");
     /*background-attachment: fixed;*/
     background-position: center;
     background-repeat: no-repeat;
@@ -34,6 +41,43 @@
   .purple-block mat-icon{
     vertical-align: middle;
   }
+
+  .skill-card{
+    width: 200px;
+}
+
+.card-img{
+    text-align: center;
+}
+
+
+
+.content-text{
+    color: white;
+    padding: 2rem;
+}
+.content-text h2{
+    font-size: 30px;
+}
+.content-img{
+    padding: 40px;
+    text-align: center;
+}
+.content-img img{
+    border-radius: 50%;
+    height: 400px;
+    width: 400px;
+    object-fit: cover;
+    box-shadow: 0 2px 5px 0 rgba(52,47,51,.63);
+}
+
+
+@media(max-width: 599px){
+    .content-img img{
+        height: 250px;
+        width: 250px;
+    }
+}
 
 @media(max-width: 599px){
     .purple-card-text{

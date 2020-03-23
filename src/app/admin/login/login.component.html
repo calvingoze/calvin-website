@@ -1,0 +1,20 @@
+<div fxLayout="column" fxLayoutAlign="center center" style="height:90vh">
+    <div fxFlex=400px style="text-align: center;">
+        <h1>Login Page</h1>
+        <p>You found my Login page!</p>
+        <div *ngIf="auth.user$ | async; then authenticated else guest"></div>
+        <p *ngIf="auth.user$ | async;">
+            <br>
+            <button mat-raised-button color="primary" routerLink="/admin/projects">Projects</button>&nbsp;
+            <button mat-raised-button color="primary" routerLink="/admin/blog">Blog</button>
+        </p>
+    </div>
+</div>
+
+<ng-template #guest>
+    <button mat-raised-button color="primary" (click)="auth.googleSignin()" >Login</button>
+</ng-template>
+
+<ng-template #authenticated>
+    <button mat-raised-button (click)="auth.signOut()" >logout</button>
+</ng-template>

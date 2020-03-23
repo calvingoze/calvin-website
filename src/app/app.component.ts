@@ -8,6 +8,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'calvin-website';
 
+  constructor(){
+
+  }
+
   GetYear() {
     let year = new Date().getFullYear();
     return (year >= 2020) ? year : 2020;

@@ -5,12 +5,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SkillsComponent } from './main/skills/skills.component';
 import { ProjectsComponent } from './main/projects/projects.component';
 import { BlogComponent } from './main/blog/blog.component';
 import { ContactComponent } from './main/contact/contact.component';
@@ -19,11 +18,11 @@ import { SidenavListComponent } from './common/sidenav-list/sidenav-list.compone
 import { HomeComponent } from './main/home/home.component';
 import { ContentBlockComponent } from './common/content-block/content-block.component';
 import { AnimateComponent } from './animations/animate.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SkillsComponent,
     ProjectsComponent,
     BlogComponent,
     ContactComponent,
@@ -40,8 +39,9 @@ import { AnimateComponent } from './animations/animate.component';
     FlexLayoutModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

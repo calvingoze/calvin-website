@@ -3,5 +3,5 @@ export class ContentBlock {
     imgAlt: string;
     header: string;
     body: any;
-    imgPosition: string;
+    imgPosition?: string;
 }
