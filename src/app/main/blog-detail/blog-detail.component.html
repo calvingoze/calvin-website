@@ -1,0 +1,11 @@
+<p>blog-detail works!</p>
+<ul *ngIf="blogPost" wmAnimate="landing" speed="faster" aos>
+    <li><strong>Title: </strong>{{blogPost.title}}</li>
+    <li><strong>Body: </strong>{{blogPost.body}}</li>
+    <li><strong>Date: </strong>{{blogPost.date | date}}</li>
+    <li><strong>Author ID: </strong>{{blogPost.authorId}}</li>
+</ul>
+<div *ngIf="!blogPost">
+    <mat-spinner></mat-spinner>
+</div>
+<div innerHtml="{{blogPost.body}}"></div>

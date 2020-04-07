@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +20,8 @@ import { HomeComponent } from './main/home/home.component';
 import { ContentBlockComponent } from './common/content-block/content-block.component';
 import { AnimateComponent } from './animations/animate.component';
 import { AdminModule } from './admin/admin.module';
+import { FormsModule } from '@angular/forms';
+import { BlogDetailComponent } from './main/blog-detail/blog-detail.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { AdminModule } from './admin/admin.module';
     SidenavListComponent,
     HomeComponent,
     ContentBlockComponent,
-    AnimateComponent
+    AnimateComponent,
+    BlogDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,9 @@ import { AdminModule } from './admin/admin.module';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AdminModule
+    AngularFireStorageModule,
+    AdminModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

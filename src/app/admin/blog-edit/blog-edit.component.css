@@ -1,0 +1,12 @@
+.form-wrapper{
+    height: calc(100vh - 129px);
+}
+
+@media(max-width: 599px){
+    .form-wrapper{
+        height: calc(100vh - 121px);
+    }
+}
+.ck-editor__editable {
+    height: 500px;
+}

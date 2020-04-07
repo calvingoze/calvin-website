@@ -1,1 +1,54 @@
-<p>blog-edit works!</p>
+ <mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" opened="true">
+    <mat-nav-list *ngIf="currentBlogPosts">
+      <mat-list-item *ngFor="let post of currentBlogPosts" (click)="SelectPost(post)" [ngStyle]="{'background-color': (post.id===formBlogPost.id) ? '#3f51b5' : 'white',
+      'color': (post.id===formBlogPost.id) ? 'white' : 'black'}">
+        {{post.title}}, {{post.date | date}}
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="form-wrapper">
+    <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+    <form class="padding-block">
+      <p>
+        <mat-form-field appearance="fill" style="width: 500px;">
+          <mat-label>Title</mat-label>
+          <input matInput name="title" [(ngModel)]="formBlogPost.title">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Date</mat-label>
+          <input matInput name="date" [(ngModel)]="formBlogPost.date" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </p>
+      <p>
+        <label for="thumbnail">Thumbnail <small>(332px X 300px)</small></label>
+        <br>
+        <input id="thumbnail" type="file" (change)="getPhoto($event)">
+        <mat-form-field appearance="fill">
+          <mat-label>Thumbnail Alt</mat-label>
+          <input matInput name="title" [(ngModel)]="formBlogPost.thumbnailAlt">
+        </mat-form-field>
+      </p>
+      <img *ngIf="formBlogPost.thumbnailUrl" src="{{formBlogPost.thumbnailUrl}}">
+
+      <ckeditor [(ngModel)]="formBlogPost.body" name="body" [editor]="Editor"></ckeditor>
+      <br>
+      <p>
+        <button mat-raised-button color="primary" *ngIf="!PostExists(formBlogPost.id)" (click)="CreatePost()">Publish
+          Post</button>&nbsp;
+        <button mat-raised-button color="primary" *ngIf="PostExists(formBlogPost.id)" (click)="UpdatePost()">Update
+          Post</button>&nbsp;
+        <button mat-raised-button color="warn" *ngIf="PostExists(formBlogPost.id)" (click)="DeletePost()">Delete
+          Post</button>&nbsp;
+        <button mat-raised-button *ngIf="PostExists(formBlogPost.id)" (click)="NewPost()">New Post</button>&nbsp;
+      </p>
+
+    </form>
+  </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,13 @@
+.blog-card {
+    width: 300px;
+  }
+
+  .card-img{
+    width: 332px;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .blog-header-image {
+    background-size: cover;
+  }

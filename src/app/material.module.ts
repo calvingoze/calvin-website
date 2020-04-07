@@ -7,6 +7,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list'
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+
+
+
 
 @NgModule({
     imports: [
@@ -16,7 +25,12 @@ import { MatListModule } from '@angular/material/list'
         MatIconModule,
         MatCardModule,
         MatSidenavModule,
-        MatListModule
+        MatListModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatFormFieldModule,
+        MatProgressSpinnerModule
     ],
     exports: [
         MatButtonModule,
@@ -25,7 +39,15 @@ import { MatListModule } from '@angular/material/list'
         MatIconModule,
         MatCardModule,
         MatSidenavModule,
-        MatListModule
+        MatListModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatFormFieldModule,
+        MatProgressSpinnerModule
+    ],
+    providers: [
+        MatDatepickerModule
     ]
 })
 export class MaterialModule { }

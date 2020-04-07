@@ -8,6 +8,8 @@ import { BlogEditComponent } from './blog-edit/blog-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 @NgModule({
@@ -21,7 +23,10 @@ import { MaterialModule } from '../material.module';
     AdminRoutingModule,
     MaterialModule,
     FlexLayoutModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    CKEditorModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
