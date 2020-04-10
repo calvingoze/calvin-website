@@ -140,8 +140,9 @@
         <div class="card-img">
         <img  mat-card-md-image src="{{skill.logoUrl}}" alt="{{skill.name}} logo">
         </div>
-        <mat-card-content>
-            <p>{{skill.description}}</p>
+        <mat-card-content class="card-button">
+            <a mat-button *ngIf="skill.blog" routerLink="/blog" [queryParams]="{search: skill.blog}">View {{skill.name}}
+                blogs</a>
         </mat-card-content>
     </mat-card>
 </div>

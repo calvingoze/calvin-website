@@ -1,0 +1,27 @@
+.outer-wrapper {
+    max-width: 1000px;
+    width: 100%;
+    padding: 1rem;
+}
+
+.author-avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    vertical-align: middle;
+    float: left;
+}
+
+.title {
+    font-size: xx-large;
+}
+
+.body {
+    font-size: 1.125rem;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: .00688rem;
+    line-height: 1.75rem;
+}

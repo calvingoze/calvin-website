@@ -1,5 +1,6 @@
  <mat-sidenav-container>
   <mat-sidenav #sidenav mode="side" opened="true">
+    <h2 style="padding: 2rem 0 0 2rem;">Active Posts</h2>
     <mat-nav-list *ngIf="currentBlogPosts">
       <mat-list-item *ngFor="let post of currentBlogPosts" (click)="SelectPost(post)" [ngStyle]="{'background-color': (post.id===formBlogPost.id) ? '#3f51b5' : 'white',
       'color': (post.id===formBlogPost.id) ? 'white' : 'black'}">
@@ -12,13 +13,13 @@
     <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
     <form class="padding-block">
       <p>
-        <mat-form-field appearance="fill" style="width: 500px;">
+        <mat-form-field appearance="standard" style="width: 500px;">
           <mat-label>Title</mat-label>
           <input matInput name="title" [(ngModel)]="formBlogPost.title">
         </mat-form-field>
       </p>
       <p>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="standard">
           <mat-label>Date</mat-label>
           <input matInput name="date" [(ngModel)]="formBlogPost.date" [matDatepicker]="picker">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -29,15 +30,31 @@
         <label for="thumbnail">Thumbnail <small>(332px X 300px)</small></label>
         <br>
         <input id="thumbnail" type="file" (change)="getPhoto($event)">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="standard">
           <mat-label>Thumbnail Alt</mat-label>
           <input matInput name="title" [(ngModel)]="formBlogPost.thumbnailAlt">
         </mat-form-field>
       </p>
       <img *ngIf="formBlogPost.thumbnailUrl" src="{{formBlogPost.thumbnailUrl}}">
 
-      <ckeditor [(ngModel)]="formBlogPost.body" name="body" [editor]="Editor"></ckeditor>
-      <br>
+      <ckeditor [config]="ckConfig" [(ngModel)]="formBlogPost.body" name="editcontent" [editor]="Editor"></ckeditor>
+
+      <p>
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-chip-list #chipList aria-label="Tag Selection">
+          <mat-chip *ngFor="let tag of formBlogPost.tags" [selectable]="true"
+                   [removable]="true" (removed)="removeTag(tag)">
+            {{tag}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="Tags"
+                 [matChipInputFor]="chipList"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]="true"
+                 (matChipInputTokenEnd)="addTag($event)">
+        </mat-chip-list>
+      </mat-form-field>
+    </p>
       <p>
         <button mat-raised-button color="primary" *ngIf="!PostExists(formBlogPost.id)" (click)="CreatePost()">Publish
           Post</button>&nbsp;

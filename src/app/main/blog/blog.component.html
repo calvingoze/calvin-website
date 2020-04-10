@@ -1,4 +1,28 @@
-<div fxLayout="row wrap" fxLayoutAlign="center">
+<div fxLayout="column" fxLayoutAlign="center" style="padding-top: 1rem;" [@SimpleFadeAnimation]>
+  <div fxFlex fxLayoutAlign="center">
+    <h1 style="font-size: xx-large;">Calvin's Cogitations</h1>
+  </div>
+  <div fxFlex fxLayoutAlign="center">
+    <form (submit)="search()">
+  <mat-form-field class="search-field" appearance="standard">
+    <mat-label>Search</mat-label>
+    <input name="search" [(ngModel)]="searchQuery" matInput placeholder="Ex. matlab">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  </form>
+</div>
+</div>
+
+
+<div *ngIf="blogPosts && blogPosts.length < 1" fxLayout="row" fxLayoutAlign="center" class="padding-block">
+  <p>Your search didn't return anything :(</p>
+</div>
+
+<div *ngIf="!blogPosts" fxLayout="row" fxLayoutAlign="center" class="padding-block">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div fxLayout="row wrap" fxLayoutAlign="center" *ngIf="blogPosts" [@ListAnimation]>
   <div class="padding-block" ngClass="padding-block" *ngFor="let post of blogPosts">
     <mat-card class="blog-card">
       <mat-card-header>
@@ -8,7 +32,7 @@
       </mat-card-header>
       <img class="card-img" mat-card-image src="{{post.thumbnailUrl}}" alt="{{post.thumbnailAlt}}">
       <mat-card-actions style="text-align: center;">
-        <button (click)="viewDetails(post)" mat-button>Read More</button>
+        <a routerLink="/blog/{{post.id}}" mat-button>Read More</a>
       </mat-card-actions>
     </mat-card>
   </div>

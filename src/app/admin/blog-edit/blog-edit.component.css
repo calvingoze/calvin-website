@@ -7,6 +7,6 @@
         height: calc(100vh - 121px);
     }
 }
-.ck-editor__editable {
-    height: 500px;
+.ck-editor__editable_inline {
+    min-height: 500px;
 }

@@ -10,13 +10,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { BlogEditDialog } from './blog-edit/blog-edit-modal';
 
 
 @NgModule({
   declarations: [
     LoginComponent, 
     ProjectEditComponent, 
-    BlogEditComponent
+    BlogEditComponent,
+    BlogEditDialog
   ],
   imports: [
     CommonModule,

@@ -1,10 +1,15 @@
+import { COMMA, SPACE} from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { BlogPost } from 'src/app/models/BlogPost';
 import { BlogService } from 'src/app/services/blog.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { firestore } from 'firebase';
+import { BlogEditDialog } from './blog-edit-modal'
+import { MatDialog } from '@angular/material/dialog';
+import { firestore, storage } from 'firebase';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { FormControl } from '@angular/forms';
-
+import { ckeditorAdapterFactory } from './CkeditorFirestorageAdapter'
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-blog-edit',
@@ -15,11 +20,25 @@ export class BlogEditComponent implements OnInit {
 
   formBlogPost: BlogPost;
   currentBlogPosts: BlogPost[];
+  separatorKeysCodes: number[] = [COMMA, SPACE];
+  tagCtrl = new FormControl();
 
   public Editor = ClassicEditor;
+  public ckConfig = {
+    extraPlugins: [ ckeditorAdapterFactory(this.storage) ],
+    codeBlock: {
+      indentSequence: "\u0009",
+      languages: [
+          { language: 'javascript', label: 'JavaScript', class: 'js javascript js-code' },
+          { language: 'javascript', label: 'TypeScript', class: 'js javascript js-code' }
+      ]
+  }
+}
 
   constructor(
-    private blogService: BlogService
+    private blogService: BlogService,
+    public dialog: MatDialog,
+    public storage: AngularFireStorage
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +50,6 @@ export class BlogEditComponent implements OnInit {
         return data;
       }) as BlogPost[];
     })
-    this.Editor.config.height = 500;
   }
 
   PostExists(id: string) {
@@ -43,20 +61,50 @@ export class BlogEditComponent implements OnInit {
   }
 
   CreatePost() {
-    this.blogService.CreateBlogPost(this.formBlogPost);
+    const dialogRef = this.dialog.open(BlogEditDialog, {
+      width: '250px',
+      data: {action: "publish", item: this.formBlogPost.title}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.blogService.CreateBlogPost(this.formBlogPost);
+          this.NewPost();
+        }
+    });
   }
 
   UpdatePost() {
-    this.blogService.UpdateBlogPost(this.formBlogPost);
+    const dialogRef = this.dialog.open(BlogEditDialog, {
+      width: '250px',
+      data: {action: "update", item: this.formBlogPost.title}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          let currentDate = new Date();
+          this.formBlogPost.lastUpdated = firestore.Timestamp.fromDate(currentDate)
+          this.blogService.UpdateBlogPost(this.formBlogPost);
+          this.NewPost();
+        }
+    });
   }
 
   DeletePost() {
-    this.blogService.DeleteBlogPost(this.formBlogPost.id);
-    this.NewPost();
+    const dialogRef = this.dialog.open(BlogEditDialog, {
+      width: '250px',
+      data: {action: "delete", item: this.formBlogPost.title}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+        this.blogService.DeleteBlogPost(this.formBlogPost.id);
+        this.NewPost();
+        }
+    });
   }
 
   NewPost() {
-    let currenDate = new Date();
     this.formBlogPost = {
       title: "",
       body: "",
@@ -77,5 +125,27 @@ export class BlogEditComponent implements OnInit {
     })
   }
 
+  addTag(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
 
+    if ((value || '').trim()) {
+      if(!this.formBlogPost.tags)
+        this.formBlogPost.tags = [];
+      this.formBlogPost.tags.push(value.trim());
+    }
+    if (input) {
+      input.value = '';
+    }
+
+    this.tagCtrl.setValue(null);
+  }
+
+  removeTag(tag: string): void {
+    const index = this.formBlogPost.tags.indexOf(tag);
+
+    if (index >= 0) {
+      this.formBlogPost.tags.splice(index, 1);
+    }
+  }
 }

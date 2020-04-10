@@ -36,6 +36,12 @@ export class BlogService {
     return this.firestore.collection('blogPosts').snapshotChanges();
   }
 
+  GetBlogPostsByQuery(query: string) {
+    return this.firestore.collection('blogPosts', ref =>
+      ref.where('tags','array-contains',query)
+    ).snapshotChanges();
+  }
+
   CreateBlogPost(blogPost: BlogPost) {
     let blogId = this.GenerateId();
     let userId = '';
@@ -45,16 +51,10 @@ export class BlogService {
 
       const BlogRef: AngularFirestoreDocument<BlogPost> = this.firestore.doc(`blogPosts/${blogId}`);
   
-      const data = { 
-        id: blogId, 
-        title: blogPost.title, 
-        date: blogPost.date, 
-        authorId: userId,
-        body: blogPost.body,
-        thumbnailUrl: blogPost.thumbnailUrl
-      }
+      blogPost.id = blogId;
+      blogPost.authorId = userId;
   
-      return BlogRef.set(data, { merge: true })
+      return BlogRef.set(blogPost, { merge: true })
     })
   }
 

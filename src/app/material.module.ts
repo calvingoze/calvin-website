@@ -12,6 +12,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 
 
@@ -30,7 +34,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         MatDatepickerModule,
         MatNativeDateModule,
         MatFormFieldModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatDialogModule,
+        MatChipsModule,
+        MatDividerModule
     ],
     exports: [
         MatButtonModule,
@@ -44,7 +51,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         MatDatepickerModule,
         MatNativeDateModule,
         MatFormFieldModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatDialogModule,
+        MatChipsModule,
+        MatDividerModule
     ],
     providers: [
         MatDatepickerModule

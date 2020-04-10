@@ -1,0 +1,7 @@
+<div mat-dialog-content>
+  <p>Are you sure you want to {{data.action}} the post '{{data.item}}'? This change will be permanent and take into effect immediately.</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">No</button>
+  <button mat-button [mat-dialog-close]="true">Yes</button>
+</div>

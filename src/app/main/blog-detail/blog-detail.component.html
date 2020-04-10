@@ -1,11 +1,23 @@
-<p>blog-detail works!</p>
-<ul *ngIf="blogPost" wmAnimate="landing" speed="faster" aos>
-    <li><strong>Title: </strong>{{blogPost.title}}</li>
-    <li><strong>Body: </strong>{{blogPost.body}}</li>
-    <li><strong>Date: </strong>{{blogPost.date | date}}</li>
-    <li><strong>Author ID: </strong>{{blogPost.authorId}}</li>
-</ul>
-<div *ngIf="!blogPost">
+<div *ngIf="!blogPost.authorName" fxLayout="row" fxLayoutAlign="center" class="padding-block">
     <mat-spinner></mat-spinner>
+  </div>
+
+<div *ngIf="blogPost.authorName" fxLayout="row" fxLayoutAlign="center">
+    <div class="outer-wrapper" wmAnimate="landing" speed="faster" aos>
+        <h1 ngClass="title">{{blogPost.title}}</h1>
+        <p>
+            <img ngClass="author-avatar" src="{{blogPost.authorUrl}}">&nbsp;&nbsp; {{blogPost.authorName}} / {{blogPost.date | date}}
+            <small *ngIf="blogPost.lastUpdated"><br>&nbsp;&nbsp; Last updated {{blogPost.lastUpdated.toDate() | date}}</small>
+        </p>
+        <br *ngIf="!blogPost.lastUpdated">
+        <mat-divider></mat-divider>
+        <br>
+        <div class="body" innerHtml="{{blogPost.body}}"></div>
+        <p>
+            <br>
+            <mat-chip-list aria-label="Go to blogs with similar tags">
+                <a mat-chip routerLink="/blog" [queryParams]="{search: tag}" *ngFor="let tag of blogPost.tags">{{tag}}</a>
+            </mat-chip-list>
+        </p>
+    </div>
 </div>
-<div innerHtml="{{blogPost.body}}"></div>

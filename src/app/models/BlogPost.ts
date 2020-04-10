@@ -6,8 +6,10 @@ export interface BlogPost {
     date: Date;
     authorId: string;
     authorUrl?: string;
+    authorName?: string;
     body: string;
     thumbnailUrl: string;
     thumbnailAlt: string;
-    LastUpdated?: firestore.Timestamp;
+    lastUpdated?: firestore.Timestamp;
+    tags?: string[];
 }

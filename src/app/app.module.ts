@@ -20,7 +20,7 @@ import { HomeComponent } from './main/home/home.component';
 import { ContentBlockComponent } from './common/content-block/content-block.component';
 import { AnimateComponent } from './animations/animate.component';
 import { AdminModule } from './admin/admin.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlogDetailComponent } from './main/blog-detail/blog-detail.component'
 
 @NgModule({
@@ -47,7 +47,8 @@ import { BlogDetailComponent } from './main/blog-detail/blog-detail.component'
     AngularFireAuthModule,
     AngularFireStorageModule,
     AdminModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
