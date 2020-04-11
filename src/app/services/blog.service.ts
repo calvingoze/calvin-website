@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
-import { FirebaseStorage } from '@angular/fire';
 import { BlogPost } from '../models/BlogPost';
 import { AuthService } from '../admin/services/auth/auth.service';
-import { User, storage } from 'firebase';
-import { Observable } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
-import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'

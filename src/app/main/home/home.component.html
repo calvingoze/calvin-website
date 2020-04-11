@@ -22,12 +22,15 @@
           <h2>{{headContent.header}}</h2>
           {{headContent.body}}
         </div>
-            <div fxFlex fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="0" fxLayoutGap.gt-xs="50px" fxLayoutAlign="center center" style="padding-top: 1rem;">
-                <div fxFlex="50px" fxFlex.gt-xs="200px">
-                    <a target="_blank" href="../../../assets/pdfs/jjd1k055fajasa40xb5xswhf9_31_16_PM_UnofficialTranscript.pdf" mat-raised-button>View Unofficial Transcript</a>
+            <div class="button-links" fxFlex fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="0" fxLayoutGap.gt-xs="50px" fxLayoutAlign="center center" style="padding-top: 1rem;">
+                <div fxFlex="50px" fxFlex.gt-xs="133px">
+                    <a target="_blank" href="../../../assets/pdfs/CalvinResume.pdf" mat-raised-button>Résumé <mat-icon>open_in_new</mat-icon></a>
                 </div>
-                <div fxFlex="50px" fxFlex.gt-xs="200px">
-                    <a target="_blank" href="../../../assets/pdfs/CalvinResume.pdf" mat-raised-button>View Résumé</a>
+                <div fxFlex="50px" fxFlex.gt-xs="133px">
+                    <a target="_blank" href="../../../assets/pdfs/jjd1k055fajasa40xb5xswhf9_31_16_PM_UnofficialTranscript.pdf" mat-raised-button>Transcript <mat-icon>open_in_new</mat-icon></a>
+                </div>
+                <div fxFlex="50px" fxFlex.gt-xs="133px">
+                    <a routerLink="/blog" mat-raised-button>Blog</a>
                 </div>
             </div>
         </div>
@@ -142,7 +145,7 @@
         </div>
         <mat-card-content class="card-button">
             <a mat-button *ngIf="skill.blog" routerLink="/blog" [queryParams]="{search: skill.blog}">View {{skill.name}}
-                blogs</a>
+                Blogs</a>
         </mat-card-content>
     </mat-card>
 </div>

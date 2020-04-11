@@ -10,9 +10,8 @@ import { BlogDetailComponent } from './main/blog-detail/blog-detail.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'home', component: HomeComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'projects', component: ProjectsComponent},
+  //{path: 'projects', component: ProjectsComponent},
   {path: 'blog', component: BlogComponent},
   {path: 'blog/:id', component: BlogDetailComponent}
 ];

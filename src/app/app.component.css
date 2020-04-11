@@ -34,3 +34,10 @@ footer{
 footer img{
     vertical-align: bottom;
 }
+
+.skip-link{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin-top: 1rem;
+}

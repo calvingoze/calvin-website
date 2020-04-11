@@ -3,13 +3,17 @@
       <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
     </mat-sidenav>
     <mat-sidenav-content>
+      <div fxLayout="row wrap" fxLayoutAlign="center" class="skip-link" [style]="'z-index: ' + linkIndex">
+        <a (focusout)="linkIndex = 1" (focus)="linkIndex = 100001" [href]="linkPath" fragment="main-content" mat-raised-button>Skip Navigation</a>
+      </div>
       <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
       <main>
+        <a id="http://localhost:4200/#main-content" name="main-content"></a>
         <router-outlet></router-outlet>
       </main>
       <footer>
         <div class="footer-content">
-          ©{{GetYear()}} Calvin Gozé &nbsp; 
+          ©{{GetYear()}} by Calvin Gozé | <a routerLink="/contact">Contact</a> |&nbsp; 
             <a href="https://github.com/calvingoze" target="_blank"><img  class="images" src="../assets/imgs/GitHub-Mark-32px.png" alt="Github"/></a>&nbsp;
             <a href="https://www.linkedin.com/in/calvin-goze-759a5a180" target="_blank"><img  class="images" src="../assets/imgs/LI-In-Bug.png" alt="Linkedin"/></a>
         </div>

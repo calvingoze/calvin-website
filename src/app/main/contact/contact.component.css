@@ -3,10 +3,34 @@
 }
 
 .contact-form {
-    width: 500px;
+    width: 100%;
 }
 
 .title {
     font-size: xx-large;
     text-align: center;
+}
+
+.title+p {
+    text-align: center;
+}
+
+.thank-you{
+    text-align: center;
+}
+
+.outer-wrapper{
+    min-height: 70vh;
+}
+
+.content-img{
+    padding: 40px;
+    text-align: center;
+}
+.content-img img{
+    border-radius: 50%;
+    height: 450px;
+    width: 450px;
+    object-fit: cover;
+    box-shadow: 0 2px 5px 0 rgba(52,47,51,.63);
 }

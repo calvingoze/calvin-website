@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { BlogService } from 'src/app/services/blog.service';
 import { BlogPost } from 'src/app/models/BlogPost';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { User } from 'firebase';
 import { Router } from '@angular/router';
 import { ListAnimation, SimpleFadeAnimation } from 'src/app/animations/basicAnimations/animations';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { User } from 'src/app/models/User';
 
 
 @Component({

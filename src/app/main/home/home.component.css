@@ -75,6 +75,10 @@
     box-shadow: 0 2px 5px 0 rgba(52,47,51,.63);
 }
 
+.button-links a{
+    font-size: large;
+}
+
 
 @media(max-width: 599px){
     .content-img img{
