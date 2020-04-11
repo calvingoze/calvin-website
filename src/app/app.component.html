@@ -4,7 +4,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <div fxLayout="row wrap" fxLayoutAlign="center" class="skip-link" [style]="'z-index: ' + linkIndex">
-        <a (focusout)="linkIndex = 1" (focus)="linkIndex = 100001" [href]="linkPath" fragment="main-content" mat-raised-button>Skip Navigation</a>
+        <a (focusout)="offFocus()" (focus)="onFocus()" [href]="linkPath" fragment="main-content" mat-raised-button [@skipLinkAnimation]="focusState" >Skip Navigation</a>
       </div>
       <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
       <main>

@@ -4,11 +4,13 @@ import { BlogPost } from 'src/app/models/BlogPost';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'firebase';
 import { Title } from '@angular/platform-browser';
+import { SlideinAnimation, SimpleFadeAnimation } from 'src/app/animations/basicAnimations/animations';
 
 @Component({
   selector: 'app-blog-detail',
   templateUrl: './blog-detail.component.html',
-  styleUrls: ['./blog-detail.component.css']
+  styleUrls: ['./blog-detail.component.css'],
+  animations: [ SlideinAnimation, SimpleFadeAnimation ]
 })
 export class BlogDetailComponent implements OnInit {
 
