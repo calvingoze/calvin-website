@@ -6,7 +6,7 @@
     <div class="outer-wrapper" [@SlideinAnimation] [@SimpleFadeAnimation]>
         <h1 ngClass="title">{{blogPost.title}}</h1>
         <p>
-            <img ngClass="author-avatar" src="{{blogPost.authorUrl}}">&nbsp;&nbsp; {{blogPost.authorName}} / {{blogPost.date | date}}
+            <img ngClass="author-avatar" alt="{{blogPost.authorName}} avatar" src="{{blogPost.authorUrl}}">&nbsp;&nbsp; {{blogPost.authorName}} / {{blogPost.date | date}}
             <small *ngIf="blogPost.lastUpdated"><br>&nbsp;&nbsp; Last updated {{blogPost.lastUpdated.toDate() | date}}</small>
         </p>
         <br *ngIf="!blogPost.lastUpdated">

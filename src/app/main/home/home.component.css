@@ -55,7 +55,14 @@
 }
 
 
-
+.content-body{
+    font-size: medium;
+    letter-spacing: 1px;
+    line-height: 1.5rem;
+}
+.content-body a{
+    color: white;
+}
 .content-text{
     color: white;
     padding: 2rem;

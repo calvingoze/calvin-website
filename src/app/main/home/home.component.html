@@ -1,8 +1,11 @@
 <div [@SimpleFadeAnimation] id="hero-img"></div>
-<div [@SimpleFadeAnimation] [@SlideinAnimation] id="hero-text">
-    <h1>Calvin Gozé</h1>
-    <p>Competent. Committed.</p>
-    <a id="down-button" mat-fab color="primary" (click)="ScrollToContent()">
+<div id="hero-text">
+    <h1 [@TitleSequnce]="'name'" >Calvin Gozé</h1>
+    <div fxLayout="row" fxLayoutAlign="center">
+        <div fxFlex="100px" [@TitleSequnce]="'competent'">Competent.</div> <div fxFlex="100px" [@TitleSequnce]="'committed'">Committed.</div>
+    </div>
+    <br>
+    <a [@TitleSequnce]="'arrow'" id="down-button" mat-fab color="primary" (click)="ScrollToContent()">
         <mat-icon>keyboard_arrow_down</mat-icon>
     </a>
 </div>
@@ -15,12 +18,22 @@
          fxLayoutAlign="center"
          fxLayoutGap="10px">
         <div class="content-img" fxFlex.xs="310px" fxFlex="460px">
-          <img src="{{headContent.imgUrl}}" alt="{{headContent.imgAlt}}">
+          <img src="/assets/imgs/home-hero.jpg" alt="Some Alt Text">
         </div>
         <div fxLayout="column" class="content-text">
         <div fxFlex>
-          <h2>{{headContent.header}}</h2>
-          {{headContent.body}}
+          <h2>Software Developer. Engineer.</h2>
+          <div class="content-body">
+          <p>Hi, my name is John Calvin Gozé (pronounced <i>go-zay</i>). I'm an engineering student and a self taught software developer.
+            I have a passion for invention, science, and learning all that I can. I strive to be a blessing to those around me
+            with my lighthearted personality, eagerness to help out where needed, and desire to learn from others. My interests include robotics, engineering, programming,
+            and drumming.
+          </p>
+          <p>This website was built using the
+            <a target="_blank" href="https://angular.io/">Angular 9</a> framework, and <a target="_blank" href="https://firebase.google.com/">Google Firebase</a>.
+            </p>
+            <p>Don't forget to check out my blog!</p>
+            </div>
         </div>
             <div class="button-links" fxFlex fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="0" fxLayoutGap.gt-xs="50px" fxLayoutAlign="center center" style="padding-top: 1rem;">
                 <div fxFlex="50px" fxFlex.gt-xs="133px">
