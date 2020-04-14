@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
 body{
     margin: 0%;
 }
@@ -16,7 +17,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .purple-block{
     box-shadow: 0 2px 5px 0 rgba(52,47,51,.63);
-    background-color: #3f51b5;
+    background-color: #673ab7;
     margin: 2rem;
     border-radius: 10px;
     color: white;
@@ -29,4 +30,8 @@ margin-bottom: 0;
 .purple-block .main-content{
 margin-top: 1rem;
 font-size: large;
+}
+
+.image img{
+    max-width: 100%;
 }

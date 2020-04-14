@@ -18,7 +18,7 @@
          fxLayoutAlign="center"
          fxLayoutGap="10px">
         <div class="content-img" fxFlex.xs="310px" fxFlex="460px">
-          <img src="/assets/imgs/home-hero.jpg" alt="Some Alt Text">
+          <img src="https://firebasestorage.googleapis.com/v0/b/calvinwebsite-7228e.appspot.com/o/Static_Images%2Fcircle-image.jpg?alt=media&token=672e06fa-2b36-4403-a79e-c7980912cdd1" alt="Calvin Gozé working at a computer.">
         </div>
         <div fxLayout="column" class="content-text">
         <div fxFlex>
@@ -35,7 +35,7 @@
             <p>Don't forget to check out my blog!</p>
             </div>
         </div>
-            <div class="button-links" fxFlex fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="0" fxLayoutGap.gt-xs="50px" fxLayoutAlign="center center" style="padding-top: 1rem;">
+            <div class="button-links" fxFlex fxFlex.xs="160px" fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="0" fxLayoutGap.gt-xs="50px" fxLayoutAlign="center center" style="padding-top: 1rem;">
                 <div fxFlex="50px" fxFlex.gt-xs="133px">
                     <a target="_blank" href="../../../assets/pdfs/CalvinResume.pdf" mat-raised-button>Résumé <mat-icon>open_in_new</mat-icon></a>
                 </div>
@@ -147,8 +147,16 @@
     <h2 ngClass="hero-text" wmAnimate="zoomIn" speed="fast" aos>Skills</h2>
 </div>
 
-<div fxLayout="row wrap" fxLayoutAlign="center">
-<div class="padding-block" *ngFor="let skill of Skills" wmAnimate="landing" speed="fast" aos>
+<div class="skill-section" wmAnimate="zoomIn" speed="fast" aos>
+    <h3>Technologies / Frameworks</h3>
+    <div fxLayout="row" fxLayoutAlign="center">
+        <mat-divider></mat-divider>
+    </div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center">
+<div fxLayout="row wrap" ngClass="skill-inner-wrapper">
+<div class="padding-block" *ngFor="let skill of techSkills" wmAnimate="landing" speed="fast" aos>
     <mat-card ngClass="skill-card">
         <mat-card-header>
             <mat-card-title><h2>{{skill.name}}</h2></mat-card-title>
@@ -161,5 +169,32 @@
                 Blogs</a>
         </mat-card-content>
     </mat-card>
+</div>
+</div>
+</div>
+
+<div class="skill-section" wmAnimate="zoomIn" speed="fast" aos>
+    <h3>Languages</h3>
+    <div fxLayout="row" fxLayoutAlign="center">
+        <mat-divider></mat-divider>
+    </div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center">
+<div fxLayout="row wrap" ngClass="skill-inner-wrapper">
+<div class="padding-block" *ngFor="let skill of langSkills" wmAnimate="landing" speed="fast" aos>
+    <mat-card ngClass="skill-card">
+        <mat-card-header>
+            <mat-card-title><h2>{{skill.name}}</h2></mat-card-title>
+        </mat-card-header>
+        <div class="card-img">
+        <img  mat-card-md-image src="{{skill.logoUrl}}" alt="{{skill.name}} logo">
+        </div>
+        <mat-card-content class="card-button">
+            <a mat-button *ngIf="skill.blog" routerLink="/blog" [queryParams]="{search: skill.blog}">View {{skill.name}}
+                Blogs</a>
+        </mat-card-content>
+    </mat-card>
+</div>
 </div>
 </div>

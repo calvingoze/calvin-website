@@ -1,8 +1,8 @@
 <div fxLayout="column" fxLayoutAlign="center" style="padding-top: 1rem;" [@SimpleFadeAnimation]>
-  <div fxFlex fxLayoutAlign="center">
+  <div fxFlex="32px" fxLayoutAlign="center">
     <h1 style="font-size: xx-large;">Calvin's Cogitations</h1>
   </div>
-  <div fxFlex fxLayoutAlign="center">
+  <div fxFlex="71px" fxLayoutAlign="center">
     <form (submit)="search()">
   <mat-form-field class="search-field" appearance="standard">
     <mat-label>Search</mat-label>
@@ -30,7 +30,7 @@
         <mat-card-title>{{post.title}}</mat-card-title>
         <mat-card-subtitle>{{post.date | date}}</mat-card-subtitle>
       </mat-card-header>
-      <img class="card-img" mat-card-image src="{{post.thumbnailUrl}}" alt="{{post.thumbnailAlt}}">
+      <a tabindex="-1" routerLink="/blog/{{post.id}}"><img class="card-img" mat-card-image src="{{post.thumbnailUrl}}" alt="{{post.thumbnailAlt}}"></a>
       <mat-card-actions style="text-align: center;">
         <a routerLink="/blog/{{post.id}}" mat-button>Read More</a>
       </mat-card-actions>
