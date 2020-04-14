@@ -34,4 +34,16 @@
     width: 450px;
     object-fit: cover;
     box-shadow: 0 2px 5px 0 rgba(52,47,51,.63);
+    max-width: 100%;
+}
+
+@media(max-width: 660px){
+    .content-img{
+        padding: 10px;
+    }
+.content-img img{
+    height: 270px;
+    width: 270px;
+
+}
 }

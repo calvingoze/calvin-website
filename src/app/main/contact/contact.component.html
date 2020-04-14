@@ -1,9 +1,9 @@
 <div fxLayout="row" class="outer-wrapper" fxLayoutAlign="center center">
-    <div fxLayout="row" fxLayoutAlign="center" [@SimpleFadeAnimation] [@SlideinAnimation]>
-        <div class="content-img" fxFlex.xs="310px" fxFlex="510px" fxHide.lt-md>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" [@SimpleFadeAnimation] [@SlideinAnimation]>
+        <div class="content-img" fxFlexOrder.lt-md="2" fxFlex.xs="310px" fxFlex="510px">
             <img src="https://firebasestorage.googleapis.com/v0/b/calvinwebsite-7228e.appspot.com/o/Static_Images%2Fcontact.jpg?alt=media&token=3d504ee8-41c6-4ca6-b1e0-3a3edc4148b7" alt="Headshot of Calvin Gozé">
         </div>
-        <div fxFlex="500px" fxFlex.lt-lg="100%"  fxLayoutAlign="center center">
+        <div fxFlex="500px" fxFlex.lt-md="512px" fxFlex.lg="100%" fxFlexOrder.lt-md="1"  fxLayoutAlign="center center">
             <form (submit)="onSubmit()" class="contact-form padding-block" *ngIf="!sent" [@SendOffAnimation]>
                 <h1 class="title">Let's Connect!</h1>
                 <p>Whether it be a comment about my site, a question about my work, or a request for my service, I would

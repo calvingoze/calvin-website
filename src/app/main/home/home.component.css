@@ -1,7 +1,6 @@
 #hero-text {
     text-align: center;
     font-size: large;
-    
 }
 #hero-text > h1 {
     margin-bottom: .5!important;
@@ -20,21 +19,10 @@
 #hero-text mat-icon{
     transform: scale(2);
 }
+
 #hero-img{
     width: 100%;
     height: calc(100vh - 255px);
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/calvinwebsite-7228e.appspot.com/o/Static_Images%2Fhome-hero.jpg?alt=media&token=28ac1121-c82a-463e-9647-79b29e784c07");
-    /*background-attachment: fixed;*/
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-#hero-img-mobile{
-    width: 100%;
-    height: calc(100vh - 255px);
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/calvinwebsite-7228e.appspot.com/o/Static_Images%2Fhome-hero-mobile.jpg?alt=media&token=7fbdbd08-6420-44c4-b371-cdcfc2e7662a");
-    /*background-attachment: fixed;*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
