@@ -1,4 +1,5 @@
-<div [@SimpleFadeAnimation] id="hero-img"></div>
+<div id="hero-img" *ngIf="!isMobile"></div>
+<div id="hero-img-mobile" *ngIf="isMobile" [style.height.px]="mobileHeight"></div>
 <div id="hero-text">
     <h1 [@TitleSequnce]="'name'" >Calvin Gozé</h1>
     <div fxLayout="row" fxLayoutAlign="center">
