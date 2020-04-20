@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: calvingoze.me
+Token: 288fdf013726621444f1b663194bf0727694f97dcc35315c6240ddca0034e3a1
