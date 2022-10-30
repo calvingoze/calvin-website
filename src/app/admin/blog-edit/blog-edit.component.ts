@@ -5,11 +5,12 @@ import { BlogService } from 'src/app/services/blog.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { BlogEditDialog } from './blog-edit-modal'
 import { MatDialog } from '@angular/material/dialog';
-import { firestore, storage } from 'firebase';
+import { firestore } from 'firebase/app';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { FormControl } from '@angular/forms';
 import { ckeditorAdapterFactory } from './CkeditorFirestorageAdapter'
 import { AngularFireStorage } from '@angular/fire/storage';
+import { title } from 'process';
 
 @Component({
   selector: 'app-blog-edit',
@@ -22,6 +23,7 @@ export class BlogEditComponent implements OnInit {
   currentBlogPosts: BlogPost[];
   separatorKeysCodes: number[] = [COMMA, SPACE];
   tagCtrl = new FormControl();
+  canEditURL: boolean = false;
 
   public Editor = ClassicEditor;
   public ckConfig = {
@@ -41,9 +43,18 @@ export class BlogEditComponent implements OnInit {
     public storage: AngularFireStorage
   ) { }
 
+  ActivePostFilter(post)
+  {
+    return post.active == true
+  }
+  InactivePostFilter(post)
+  {
+    return post.active == false
+  }
+
   ngOnInit(): void {
     this.NewPost();
-    this.blogService.GetBlogPosts().subscribe(data => {
+    this.blogService.GetBlogPosts(true).subscribe(data => {
       this.currentBlogPosts = data.map(e => {
         let data: any = e.payload.doc.data();
         data.date = data.date.toDate(); // Convert the firestore timestamp object to date object
@@ -58,35 +69,53 @@ export class BlogEditComponent implements OnInit {
 
   SelectPost(post: BlogPost) {
     this.formBlogPost = post;
+    if (this.formBlogPost.friendlyUrlName != this.formBlogPost.title.replace(/ /gi,"-").toLowerCase().replace(/[^a-z0-9-]/g, ''))
+      this.canEditURL = true;
+      else
+      this.canEditURL = false;
   }
 
-  CreatePost() {
+  CreatePost(active: boolean = true) {
+    this.formBlogPost.active = active;
+    let actionStatment = active ? "publish" : "save";
+    this.formBlogPost.friendlyUrlName = this.formBlogPost.friendlyUrlName.replace(/ /gi,"-").toLowerCase().replace(/[^a-z0-9-]/g, '')
     const dialogRef = this.dialog.open(BlogEditDialog, {
       width: '250px',
-      data: {action: "publish", item: this.formBlogPost.title}
+      data: {action: actionStatment, item: this.formBlogPost.title}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(async result => {
         if (result) {
-          this.blogService.CreateBlogPost(this.formBlogPost);
-          this.NewPost();
+          let result = await this.blogService.CreateBlogPost(this.formBlogPost);
+          if (result.success) {
+            this.NewPost();
+          } else {
+            alert(result.message);
+          }
         }
     });
   }
 
-  UpdatePost() {
+  UpdatePost(changeActivity: boolean = false) {
+    this.formBlogPost.friendlyUrlName = this.formBlogPost.friendlyUrlName.replace(/ /gi,"-").toLowerCase().replace(/[^a-z0-9-]/g, '')
+    let actionStatment = changeActivity && this.formBlogPost.active ? "save and deactivate" : changeActivity && !this.formBlogPost.active ? "save and activate" : "update"
     const dialogRef = this.dialog.open(BlogEditDialog, {
       width: '250px',
-      data: {action: "update", item: this.formBlogPost.title}
+      data: { action: actionStatment, item: this.formBlogPost.title }
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          let currentDate = new Date();
-          this.formBlogPost.lastUpdated = firestore.Timestamp.fromDate(currentDate)
-          this.blogService.UpdateBlogPost(this.formBlogPost);
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result) {
+        if(changeActivity)
+        this.formBlogPost.active = !this.formBlogPost.active;
+        let currentDate = new Date();
+        this.formBlogPost.lastUpdated = firestore.Timestamp.fromDate(currentDate)
+        let result = await this.blogService.UpdateBlogPost(this.formBlogPost);
+        if(result.success) {
           this.NewPost();
+        } else {
+          alert(result.message)
         }
+      }
     });
   }
 
@@ -105,6 +134,7 @@ export class BlogEditComponent implements OnInit {
   }
 
   NewPost() {
+    this.canEditURL = false;
     this.formBlogPost = {
       title: "",
       body: "",
@@ -112,7 +142,8 @@ export class BlogEditComponent implements OnInit {
       date: new Date(),
       authorId: "",
       thumbnailUrl: "",
-      thumbnailAlt: ""
+      thumbnailAlt: "",
+      active: true
     }
   }
 
@@ -147,5 +178,18 @@ export class BlogEditComponent implements OnInit {
     if (index >= 0) {
       this.formBlogPost.tags.splice(index, 1);
     }
+  }
+
+  UpdateFriendlyUrl() {
+    if(!this.canEditURL)
+    {
+      this.formBlogPost.friendlyUrlName = this.formBlogPost.title.replace(/ /gi,"-").toLowerCase().replace(/[^a-z0-9-]/g, '');
+    }
+  }
+
+  ToggleURLEditor() {
+    this.canEditURL = !this.canEditURL;
+    if (!this.canEditURL)
+      this.UpdateFriendlyUrl();
   }
 }

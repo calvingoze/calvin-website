@@ -1,8 +1,8 @@
-<div *ngIf="!blogPost.authorName" fxLayout="row" fxLayoutAlign="center" class="padding-block">
+<div *ngIf="!blogPost" fxLayout="row" fxLayoutAlign="center" class="padding-block">
     <mat-spinner></mat-spinner>
   </div>
 
-<div *ngIf="blogPost.authorName" fxLayout="row" fxLayoutAlign="center">
+<div *ngIf="blogPost" fxLayout="row" fxLayoutAlign="center">
     <div class="outer-wrapper" [@SlideinAnimation] [@SimpleFadeAnimation]>
         <h1 ngClass="title">{{blogPost.title}}</h1>
         <p>

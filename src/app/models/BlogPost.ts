@@ -12,4 +12,6 @@ export interface BlogPost {
     thumbnailAlt: string;
     lastUpdated?: firestore.Timestamp;
     tags?: string[];
+    friendlyUrlName?: string;
+    active: boolean;
 }

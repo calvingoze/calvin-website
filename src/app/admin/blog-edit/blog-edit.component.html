@@ -1,8 +1,15 @@
  <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" opened="true">
-    <h2 style="padding: 2rem 0 0 2rem;">Active Posts</h2>
-    <mat-nav-list *ngIf="currentBlogPosts">
-      <mat-list-item *ngFor="let post of currentBlogPosts" (click)="SelectPost(post)" [ngStyle]="{'background-color': (post.id===formBlogPost.id) ? '#3f51b5' : 'white',
+  <mat-sidenav #sidenav mode="side" opened="true" style=" width:350px">
+    <h2 *ngIf="currentBlogPosts && currentBlogPosts.filter(ActivePostFilter).length > 0" style="padding: 2rem 0 0 2rem;">Active Posts</h2>
+    <mat-nav-list *ngIf="currentBlogPosts && currentBlogPosts.filter(ActivePostFilter).length > 0">
+      <mat-list-item *ngFor="let post of currentBlogPosts.filter(ActivePostFilter)" (click)="SelectPost(post)" [ngStyle]="{'background-color': (post.id===formBlogPost.id) ? '#3f51b5' : 'white',
+      'color': (post.id===formBlogPost.id) ? 'white' : 'black'}">
+        {{post.title}}, {{post.date | date}}
+      </mat-list-item>
+    </mat-nav-list>
+    <h2 *ngIf="currentBlogPosts && currentBlogPosts.filter(InactivePostFilter).length > 0" style="padding: 2rem 0 0 2rem;">Inactive Posts</h2>
+    <mat-nav-list *ngIf="currentBlogPosts && currentBlogPosts.filter(InactivePostFilter).length > 0">
+      <mat-list-item *ngFor="let post of currentBlogPosts.filter(InactivePostFilter)" (click)="SelectPost(post)" [ngStyle]="{'background-color': (post.id===formBlogPost.id) ? '#3f51b5' : 'white',
       'color': (post.id===formBlogPost.id) ? 'white' : 'black'}">
         {{post.title}}, {{post.date | date}}
       </mat-list-item>
@@ -15,8 +22,17 @@
       <p>
         <mat-form-field appearance="standard" style="width: 500px;">
           <mat-label>Title</mat-label>
-          <input matInput name="title" [(ngModel)]="formBlogPost.title">
+          <input (change)="UpdateFriendlyUrl()" matInput name="title" [(ngModel)]="formBlogPost.title">
         </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="standard" style="width: 400px; font-size: 10px;">
+          <mat-label>Url</mat-label>
+          <input disabled="{{!canEditURL}}" matInput name="friendlyUrlName" [(ngModel)]="formBlogPost.friendlyUrlName">
+        </mat-form-field>
+        <button mat-icon-button color="primary" (click)="ToggleURLEditor()" tabindex="-1">
+          <mat-icon>edit</mat-icon>
+        </button>
       </p>
       <p>
         <mat-form-field appearance="standard">
@@ -32,7 +48,7 @@
         <input id="thumbnail" type="file" (change)="getPhoto($event)">
         <mat-form-field appearance="standard">
           <mat-label>Thumbnail Alt</mat-label>
-          <input matInput name="title" [(ngModel)]="formBlogPost.thumbnailAlt">
+          <input matInput name="thumbnailAlt" [(ngModel)]="formBlogPost.thumbnailAlt">
         </mat-form-field>
       </p>
       <img *ngIf="formBlogPost.thumbnailUrl" src="{{formBlogPost.thumbnailUrl}}">
@@ -56,12 +72,12 @@
       </mat-form-field>
     </p>
       <p>
-        <button mat-raised-button color="primary" *ngIf="!PostExists(formBlogPost.id)" (click)="CreatePost()">Publish
-          Post</button>&nbsp;
-        <button mat-raised-button color="primary" *ngIf="PostExists(formBlogPost.id)" (click)="UpdatePost()">Update
-          Post</button>&nbsp;
-        <button mat-raised-button color="warn" *ngIf="PostExists(formBlogPost.id)" (click)="DeletePost()">Delete
-          Post</button>&nbsp;
+        <button mat-raised-button color="primary" *ngIf="!PostExists(formBlogPost.id)" (click)="CreatePost()">Publish Post</button>&nbsp;
+        <button mat-raised-button  *ngIf="!PostExists(formBlogPost.id)" (click)="CreatePost(false)">Save Post</button>&nbsp;
+        <button mat-raised-button color="primary" *ngIf="PostExists(formBlogPost.id)" (click)="UpdatePost()">Update Post</button>&nbsp;
+        <button mat-raised-button color="warn" *ngIf="PostExists(formBlogPost.id)" (click)="DeletePost()">Delete Post</button>&nbsp;
+        <button mat-stroked-button color="accent" *ngIf="PostExists(formBlogPost.id) && !formBlogPost.active" (click)="UpdatePost(true)">Activate Post</button>&nbsp;
+        <button mat-stroked-button color="warn" *ngIf="PostExists(formBlogPost.id) && formBlogPost.active" (click)="UpdatePost(true)">Deactivate Post</button>&nbsp;
         <button mat-raised-button *ngIf="PostExists(formBlogPost.id)" (click)="NewPost()">New Post</button>&nbsp;
       </p>
 

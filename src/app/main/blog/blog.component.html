@@ -30,9 +30,9 @@
         <mat-card-title>{{post.title}}</mat-card-title>
         <mat-card-subtitle>{{post.date | date}}</mat-card-subtitle>
       </mat-card-header>
-      <a tabindex="-1" routerLink="/blog/{{post.id}}"><img class="card-img" mat-card-image src="{{post.thumbnailUrl}}" alt="{{post.thumbnailAlt}}"></a>
+      <a tabindex="-1" routerLink="/blog/{{post.friendlyUrlName}}"><img class="card-img" mat-card-image src="{{post.thumbnailUrl}}" alt="{{post.thumbnailAlt}}"></a>
       <mat-card-actions style="text-align: center;">
-        <a routerLink="/blog/{{post.id}}" mat-button>Read More</a>
+        <a routerLink="/blog/{{post.friendlyUrlName}}" mat-button>Read More</a>
       </mat-card-actions>
     </mat-card>
   </div>

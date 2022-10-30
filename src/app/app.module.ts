@@ -8,6 +8,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +22,7 @@ import { ContentBlockComponent } from './common/content-block/content-block.comp
 import { AnimateComponent } from './animations/animate.component';
 import { AdminModule } from './admin/admin.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BlogDetailComponent } from './main/blog-detail/blog-detail.component'
+import { BlogDetailComponent } from './main/blog-detail/blog-detail.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { BlogDetailComponent } from './main/blog-detail/blog-detail.component'
     FlexLayoutModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAnalyticsModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
