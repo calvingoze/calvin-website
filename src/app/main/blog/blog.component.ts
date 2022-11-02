@@ -6,8 +6,6 @@ import { Router } from '@angular/router';
 import { ListAnimation, SimpleFadeAnimation } from 'src/app/animations/basicAnimations/animations';
 import { ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
-import { User } from 'src/app/models/User';
-
 
 @Component({
   selector: 'app-blog',
@@ -64,13 +62,6 @@ export class BlogComponent implements OnInit {
       }) as BlogPost[];
 
       this.blogPosts.sort((a,b) => b.date.valueOf() - a.date.valueOf());
-
-      this.blogPosts.forEach(post => {
-        this.afs.doc(`users/${post.authorId}`).ref.get().then(doc => {
-          let authorInfo = doc.data() as User;
-          post.authorUrl = authorInfo.photoURL
-        })
-      })
     });
   }
   advancedQuery() {
@@ -85,13 +76,6 @@ export class BlogComponent implements OnInit {
       }) as BlogPost[];
 
       this.blogPosts.sort((a,b) => b.date.valueOf() - a.date.valueOf());
-
-      this.blogPosts.forEach(post => {
-        this.afs.doc(`users/${post.authorId}`).ref.get().then(doc => {
-          let authorInfo = doc.data() as User;
-          post.authorUrl = authorInfo.photoURL
-        })
-      })
     })
   }
 }

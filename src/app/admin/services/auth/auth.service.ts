@@ -8,6 +8,8 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { BlogPost } from 'src/app/models/BlogPost';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -35,7 +37,8 @@ export class AuthService {
 
     async googleSignin() {
       const provider = new auth.GoogleAuthProvider();
-      const credential = await this.afAuth.auth.signInWithPopup(provider);
+      const credential = await this.afAuth.auth.signInWithPopup(
+        provider);
       
       this.afs.doc(`users/${credential.user.uid}`).ref.get().then(
         (doc:any) => {
@@ -52,16 +55,25 @@ export class AuthService {
     }
   
     private updateUserData(user) {
+
+      this.afs.collection(environment.BlogDataBase, ref => ref.where("authorId","==",user.email)).get().toPromise().then(queryData => {
+        let docs = queryData.docs;
+        docs.forEach(doc => {
+          let blogData = doc.data() as BlogPost;
+          blogData.authorName = user.displayName;
+          blogData.authorUrl = user.photoURL;
+          this.afs.doc(environment.BlogDataBase + '/' + blogData.id).update(blogData)
+        });
+      });
+
       // Sets user data to firestore on login
       const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-  
       const data = { 
         uid: user.uid, 
         email: user.email, 
         displayName: user.displayName, 
         photoURL: user.photoURL
-      } 
-  
+      }
       return userRef.set(data, { merge: true })
   
     }

@@ -65,12 +65,12 @@ export class BlogService {
     }
     else {
       let blogId = this.GenerateId();
-      let userId = '';
       let user = await this.auth.user$.pipe(take(1)).toPromise()
-      userId = user.uid
       const BlogRef: AngularFirestoreDocument<BlogPost> = this.firestore.doc(`${environment.BlogDataBase}/${blogId}`);
       blogPost.id = blogId;
-      blogPost.authorId = userId;
+      blogPost.authorId = user.email;
+      blogPost.authorName = user.displayName;
+      blogPost.authorUrl = user.photoURL;
       return await BlogRef.set(blogPost, { merge: true }).then(()=>{
         return { success: true, message: "Blog post published successfully!" };
       }).catch(()=>{
@@ -108,9 +108,6 @@ export class BlogService {
       let data: any = queryData.docs[0].data()
       data.date = data.date.toDate(); // Convert the firestore timestamp object to date object
       let blogPost = data as BlogPost;
-      let author = (await this.firestore.doc(`users/${blogPost.authorId}`).ref.get()).data() as User
-      blogPost.authorName = author.displayName;
-      blogPost.authorUrl = author.photoURL;
       return blogPost;
     })
   }
@@ -120,9 +117,6 @@ export class BlogService {
       let data: any = queryData[0].payload.doc.data()
       data.date = data.date.toDate(); // Convert the firestore timestamp object to date object
       let blogPost = data as BlogPost;
-      let author = await this.GetAuthorInfo(blogPost) as User
-      blogPost.authorName = author.displayName
-      blogPost.authorUrl = author.photoURL
       setPostDelegate(blogPost);
     })
   }
