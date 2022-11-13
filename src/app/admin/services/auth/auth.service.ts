@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../../models/User';
 
-import { auth } from 'firebase/app';
+import { auth, FirebaseError } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
@@ -45,11 +45,13 @@ export class AuthService {
           if(doc.exists) {
             return this.updateUserData(credential.user);
           } else{
-            alert("Your account is not allowed in. It will be recorded that you attempted to login... GOT 'EEM")
             return this.signOut()
           }
         }
-      )
+      ).catch((data)=> {
+        let er = data as FirebaseError
+        alert("Login Failed: you don't belong here boy...")
+      })
 
       //return this.updateUserData(credential.user);
     }
