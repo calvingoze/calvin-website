@@ -67,6 +67,7 @@ export class AppRoutingModule {
               this.meta.updateTag({property:"twitter:title",content: event['title']})
               this.meta.updateTag({property:"og:image",content:"https://firebasestorage.googleapis.com/v0/b/calvinwebsite-7228e.appspot.com/o/Static_Images%2Fhome-hero-mobile.jpg?alt=media&token=7fbdbd08-6420-44c4-b371-cdcfc2e7662a"})
               this.meta.updateTag({property:"twitter:image",content:"https://firebasestorage.googleapis.com/v0/b/calvinwebsite-7228e.appspot.com/o/Static_Images%2Fhome-hero-mobile.jpg?alt=media&token=7fbdbd08-6420-44c4-b371-cdcfc2e7662a"})
+              this.meta.removeTag("name='keywords'")
           });
   }
  }
