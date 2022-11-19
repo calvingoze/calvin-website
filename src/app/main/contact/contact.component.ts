@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { SimpleFadeAnimation, SendOffAnimation, SlideinAnimation } from 'src/app/animations/basicAnimations/animations';
@@ -29,15 +28,11 @@ export class ContactComponent implements OnInit {
   email: string;
 
   constructor(
-    private titleService: Title,
-    private contactService: ContactService,
-    private meta: Meta
+    private contactService: ContactService
   ) { }
 
   ngOnInit(): void {
     this.sent = false;
-    this.titleService.setTitle("Calvin Gozé | Contact");
-    this.meta.updateTag({name: 'description',content: "I'd love to get in contact with you! Feel free to ask me anything!"})
   }
 
   emailFormControl = new FormControl('', [

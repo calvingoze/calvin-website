@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from 'src/app/services/blog.service';
 import { BlogPost } from 'src/app/models/BlogPost';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { ListAnimation, SimpleFadeAnimation } from 'src/app/animations/basicAnimations/animations';
 import { ActivatedRoute } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog',
@@ -21,16 +19,11 @@ export class BlogComponent implements OnInit {
 
   constructor(
     private blogService: BlogService,
-    private afs: AngularFirestore,
     private router: Router,
     private route: ActivatedRoute,
-    private titleService: Title,
-    private meta: Meta
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Calvin Gozé | Blog');
-    this.meta.updateTag({name: 'description',content: "This is my blog, where I talk about engineering stuff, interesting thins's I've done, or just about anything that's on my mind!"})
     this.searchQuery = this.route.snapshot.queryParamMap.get('search');
     if(this.searchQuery) {
       this.advancedQuery();
